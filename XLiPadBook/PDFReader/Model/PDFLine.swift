@@ -16,4 +16,5 @@ class PDFLine: NSObject {
     var text: String = ""
     var blockIndex: Int = 0       // 所属块索引
     var paragraphIndex: Int = 0   // 所属段落索引
+    var font: UIFont?
 }
