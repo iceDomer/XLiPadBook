@@ -81,6 +81,46 @@ private extension PDFReaderViewController {
                 PDFCacheManager.shared.markAsRead(url: self.remoteURL)
 
                 self.setupReader(with: document)
+                
+                if let page = document.page(at: 0),
+                   let pageRef = page.pageRef {
+                    
+                    let dict = pageRef.dictionary!
+                    var resources: CGPDFDictionaryRef?
+                    CGPDFDictionaryGetDictionary(dict, "Resources", &resources)
+                    
+                    guard let resources else { return }
+                    
+                    var xObject: CGPDFDictionaryRef?
+                    CGPDFDictionaryGetDictionary(resources, "XObject", &xObject)
+                    
+                    guard let xObject else { return }
+                    
+                    var imageStream: CGPDFStreamRef?
+                    CGPDFDictionaryGetStream(xObject, "Im0", &imageStream)
+                    
+                    guard let imageStream else { return }
+                    
+                    let streamDict = CGPDFStreamGetDictionary(imageStream)!
+                    
+                    // 查压缩格式
+                    var filterName: CGPDFObjectRef?
+                    CGPDFDictionaryGetObject(streamDict, "Filter", &filterName)
+                    var namePtr: UnsafePointer<CChar>?
+                    if CGPDFObjectGetValue(filterName!, .name, &namePtr), let namePtr {
+                        print("Filter:", String(cString: namePtr))
+                        // DCTDecode  → 普通 JPEG（快）
+                        // JPXDecode  → JPEG2000（慢 3~5 倍）
+                        // FlateDecode → zlib 压缩的原始位图（超慢）
+                    }
+                    
+                    // 查图片尺寸
+                    var width: Int = 0
+                    var height: Int = 0
+                    CGPDFDictionaryGetInteger(streamDict, "Width", &width)
+                    CGPDFDictionaryGetInteger(streamDict, "Height", &height)
+                    print("Image size: \(width) × \(height) px")
+                }
             }
         )
     }
@@ -93,8 +133,8 @@ private extension PDFReaderViewController {
 private extension PDFReaderViewController {
 
     func setupReader(with document: PDFDocument) {
-        let lastPage = ProgressManager.lastProgress(for: bookId)
-
+//        let lastPage = ProgressManager.lastProgress(for: bookId)
+        let lastPage = 0
         // Page Container
         pageController = PageContainerController(
             transitionStyle: .pageCurl,

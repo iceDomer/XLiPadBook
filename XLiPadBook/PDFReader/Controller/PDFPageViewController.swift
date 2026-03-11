@@ -32,6 +32,7 @@ class PDFPageViewController: UIViewController {
         ])
         updateDisplayMode(for: view.bounds.size)
 
+        setupGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,14 +54,60 @@ class PDFPageViewController: UIViewController {
         if size.width > size.height {
             // 横屏 → 双页
             pdfView.displayMode = .twoUp
-            pdfView.displaysAsBook = true   // 左右翻页像书本
+            pdfView.displaysAsBook = false   // 左右翻页像书本
         } else {
             // 竖屏 → 单页
             pdfView.displayMode = .singlePage
-            pdfView.displaysAsBook = true
+            pdfView.displaysAsBook = false
         }
         // 重置缩放，让页面重新填充
         pdfView.autoScales = true
+    }
+    
+    private func setupGestures() {
+
+        // 找到 PDFView 内部已有的双击手势，让单击手势等它失败后再触发
+        // 这样既不破坏系统双击缩放，又能避免双击时误调用 toggleToolbar
+        let existingDoubleTap = pdfView.gestureRecognizers?
+            .compactMap { $0 as? UITapGestureRecognizer }
+            .first { $0.numberOfTapsRequired == 2 }
+
+        // singleTap
+        let singleTap = UITapGestureRecognizer(target: self,
+                                               action: #selector(handleSingleTap(_:)))
+        singleTap.numberOfTapsRequired = 1
+        if let doubleTap = existingDoubleTap {
+            singleTap.require(toFail: doubleTap)
+        }
+        pdfView.addGestureRecognizer(singleTap)
+
+    }
+    
+    @objc private func handleSingleTap(_ tap: UITapGestureRecognizer) {
+
+        let point = tap.location(in: pdfView)
+        let width = pdfView.bounds.width
+
+        let ratio = point.x / width
+
+        if ratio < 0.25 {
+
+            pdfView.goToPreviousPage(nil)
+
+        } else if ratio > 0.75 {
+
+            pdfView.goToNextPage(nil)
+
+        } else {
+
+            toggleToolbar()
+
+        }
+    }
+    
+   
+    private func toggleToolbar() {
+        print("toggle toolbar")
     }
 }
 // MARK: - CustomPDFViewDelegate
