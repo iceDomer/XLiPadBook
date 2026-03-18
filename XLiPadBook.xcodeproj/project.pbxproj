@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		0AB3A39E2F626336004D8438 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A9C92952E61864200BB5355 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A9C929C2E61864200BB5355;
+			remoteInfo = XLiPadBook;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0A9C929D2E61864200BB5355 /* XLiPadBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLiPadBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AB3A39A2F626336004D8438 /* XLiPadBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLiPadBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,10 +40,22 @@
 			path = XLiPadBook;
 			sourceTree = "<group>";
 		};
+		0AB3A39B2F626336004D8438 /* XLiPadBookTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = XLiPadBookTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0A9C929A2E61864200BB5355 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0AB3A3972F626336004D8438 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				0A9C929F2E61864200BB5355 /* XLiPadBook */,
+				0AB3A39B2F626336004D8438 /* XLiPadBookTests */,
 				0A9C929E2E61864200BB5355 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				0A9C929D2E61864200BB5355 /* XLiPadBook.app */,
+				0AB3A39A2F626336004D8438 /* XLiPadBookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +108,29 @@
 			productReference = 0A9C929D2E61864200BB5355 /* XLiPadBook.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0AB3A3992F626336004D8438 /* XLiPadBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0AB3A3A02F626336004D8438 /* Build configuration list for PBXNativeTarget "XLiPadBookTests" */;
+			buildPhases = (
+				0AB3A3962F626336004D8438 /* Sources */,
+				0AB3A3972F626336004D8438 /* Frameworks */,
+				0AB3A3982F626336004D8438 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0AB3A39F2F626336004D8438 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0AB3A39B2F626336004D8438 /* XLiPadBookTests */,
+			);
+			name = XLiPadBookTests;
+			packageProductDependencies = (
+			);
+			productName = XLiPadBookTests;
+			productReference = 0AB3A39A2F626336004D8438 /* XLiPadBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -90,11 +138,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					0A9C929C2E61864200BB5355 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					0AB3A3992F626336004D8438 = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 0A9C929C2E61864200BB5355;
 					};
 				};
 			};
@@ -113,12 +165,20 @@
 			projectRoot = "";
 			targets = (
 				0A9C929C2E61864200BB5355 /* XLiPadBook */,
+				0AB3A3992F626336004D8438 /* XLiPadBookTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0A9C929B2E61864200BB5355 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0AB3A3982F626336004D8438 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +195,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0AB3A3962F626336004D8438 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0AB3A39F2F626336004D8438 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A9C929C2E61864200BB5355 /* XLiPadBook */;
+			targetProxy = 0AB3A39E2F626336004D8438 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0A9C92B12E61864500BB5355 /* Debug */ = {
@@ -315,6 +390,48 @@
 			};
 			name = Release;
 		};
+		0AB3A3A12F626336004D8438 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ice.XLiPadBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLiPadBook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/XLiPadBook";
+			};
+			name = Debug;
+		};
+		0AB3A3A22F626336004D8438 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ice.XLiPadBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLiPadBook.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/XLiPadBook";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -332,6 +449,15 @@
 			buildConfigurations = (
 				0A9C92B12E61864500BB5355 /* Debug */,
 				0A9C92B22E61864500BB5355 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0AB3A3A02F626336004D8438 /* Build configuration list for PBXNativeTarget "XLiPadBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0AB3A3A12F626336004D8438 /* Debug */,
+				0AB3A3A22F626336004D8438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

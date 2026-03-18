@@ -4,6 +4,7 @@
 //
 //  Created by ice on 29/8/2025.
 //
+
 import UIKit
 import PDFKit
 
@@ -143,6 +144,20 @@ private extension PDFReaderViewController {
         )
         pageController.document = document
         pageController.currentPageIndex = lastPage
+        pageController.onToggleToolbar = { [weak self] in
+            guard let self else { return }
+            let isHidden = self.progressSlider.isHidden
+            UIView.animate(withDuration: 0.25) {
+                self.progressSlider.alpha = isHidden ? 1 : 0
+            } completion: { _ in
+                self.progressSlider.isHidden = !isHidden
+            }
+        }
+
+        // 监听翻页（用户手动翻 / goToPage 跳转）→ 同步进度条
+        pageController.onPageDidChange = { [weak self] index in
+            self?.pageDidChange(to: index)
+        }
 
         addChild(pageController)
         pageController.view.frame = view.bounds
@@ -153,6 +168,8 @@ private extension PDFReaderViewController {
         progressSlider.configure(with: document)
         progressSlider.delegate = self
         progressSlider.translatesAutoresizingMaskIntoConstraints = false
+        progressSlider.isHidden = true
+        progressSlider.alpha = 0
         view.addSubview(progressSlider)
 
         NSLayoutConstraint.activate([
